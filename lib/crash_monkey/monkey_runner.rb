@@ -183,7 +183,7 @@ module UIAutoMonkey
 
     def generate_ui_auto_monkey
       orig = File.read(ui_auto_monkey_original_path)
-      config = JSON.parse(File.read(@options[:config_path]))
+      config = JSON.parse(File.read(config_json_path))
       replace_str = "    config: #{JSON.pretty_generate(config, :indent => ' '*6)}, \n"
       js = replace_text(orig, replace_str, '__UIAutoMonkey Configuration Begin__', '__UIAutoMonkey Configuration End__')
       File.open(ui_auto_monkey_path, 'w') {|f| f.write(js)}

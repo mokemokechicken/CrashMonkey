@@ -3,6 +3,7 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
+gem 'CrashMonkey'
 gem 'erubis', '>= 2.7.0'
 gem 'json', '>= 1.7.0'
 
