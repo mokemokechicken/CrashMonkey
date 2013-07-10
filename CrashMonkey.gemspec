@@ -5,15 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{CrashMonkey}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ken Morishita"]
   s.date = %q{2013-07-10}
-  s.default_executable = %q{run_monkey.rb}
+  s.default_executable = %q{run_monkey}
   s.description = %q{This is a Monkey Test Tool using UIAutomation.}
   s.email = %q{mokemokechicken@gmail.com}
-  s.executables = ["run_monkey.rb"]
+  s.executables = ["run_monkey"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "bin/run_monkey.rb",
+    "bin/run_monkey",
     "lib/bootstrap/css/bootstrap-responsive.css",
     "lib/bootstrap/css/bootstrap-responsive.min.css",
     "lib/bootstrap/css/bootstrap.css",
