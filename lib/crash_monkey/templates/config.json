@@ -1,0 +1,25 @@
+{
+    "numberOfEvents": 1000,
+    "delayBetweenEvents": 0.05,
+    "result_detail_event_num": 20,
+
+    "eventWeights": {
+        "tap": 500,
+        "drag": 100,
+        "flick": 100,
+        "orientation": 1,
+        "clickVolumeUp": 1,
+        "clickVolumeDown": 1,
+        "lock": 3,
+        "pinchClose": 50,
+        "pinchOpen": 50,
+        "shake": 1,
+        "deactivate": 3
+    },
+
+    "touchProbability": {
+        "multipleTaps": 0.05,
+        "multipleTouches": 0.05,
+        "longPress": 0.05
+    }
+}

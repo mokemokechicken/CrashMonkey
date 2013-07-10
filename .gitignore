@@ -1,0 +1,9 @@
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.idea/
+/instrumentscli*.trace/
+.ruby-version
+/.bundle/
+/vendor/
+/spike/
