@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+Version = File.read(File.expand_path('../../VERSION', __FILE__))
+
 require 'optparse'
 
 $: << File.dirname(__FILE__) + '/../lib'
@@ -7,14 +9,18 @@ require 'crash_monkey'
 
 opts = {}
 ARGV.options do |o|
-  Version = '0.1'
-  o.on('-a app_name', 'Target Application') {|b| opts[:app_path] = b}
+  o.on('-a app_name', 'Target Application(Required)') {|b| opts[:app_path] = b}
   o.on('-n run_count', 'How many times monkeys run(default: 2)') {|b| opts[:run_count] = b.to_i}
   o.on('-d result_dir', 'Where to output result(default: ./crash_monkey)') {|b| opts[:result_base_dir] = File.expand_path(b)}
   o.on('-t time_limit_sec', 'Time limit of running(default: 100 sec)') {|b| opts[:time_limit_sec] = b.to_i}
   o.on('-c config_path', 'Configuration JSON Path') {|b| opts[:config_path] = File.expand_path(b)}
   o.on('--show-config', 'Show Current Configuration JSON') {|_| opts[:show_config] = true}
   o.parse!
+end
+
+unless opts[:app_path] || opts[:show_config]
+  puts ARGV.options.help
+  exit(1)
 end
 
 opts[:run_count] ||= 2
