@@ -1,3 +1,6 @@
+# CrashMonkey Default Output Dir
+crash_monkey_result/
+
 # rcov generated
 coverage
 coverage.data

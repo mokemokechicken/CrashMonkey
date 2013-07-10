@@ -9,7 +9,7 @@ module UIAutoMonkey
 
   class MonkeyRunner
     TRACE_TEMPLATE='/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate'
-    RESULT_BASE_PATH = '/var/tmp/auto_monkey'
+    RESULT_BASE_PATH = File.expand_path('crash_monkey_result')
     RESULT_DETAIL_EVENT_NUM = 20
     TIME_LIMIT_SEC = 100
 
