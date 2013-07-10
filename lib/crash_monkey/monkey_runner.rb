@@ -45,7 +45,7 @@ module UIAutoMonkey
     end
 
     def setup_running
-      kill_all('iPhone Simulator')
+      # kill_all('iPhone Simulator')
       FileUtils.remove_dir(result_dir, true)
       ENV['UIARESULTSPATH'] = result_dir
       @crashed = false
@@ -125,8 +125,28 @@ module UIAutoMonkey
     def app_path
       @app_path ||= find_app_path(@options)
     end
+
     def app_name
       File.basename(app_path).gsub(/\.app$/, '')
+    end
+
+    def find_apps(app)
+      `"ls" -dt #{ENV['HOME']}/Library/Developer/Xcode/DerivedData/*/Build/Products/*/#{app}`.strip.split(/\n/)
+    end
+
+    def find_app_path(opts)
+      app_path = nil
+      if opts[:app_path].include?('/')
+        app_path = File.expand_path(opts[:app_path])
+      elsif opts[:app_path] =~ /\.app$/
+        apps = find_apps(opts[:app_path])
+        app_path = apps[0]
+        log "#{apps.size} apps are found, USE NEWEST APP: #{app_path}" if apps.size > 1
+      end
+      unless app_path
+        raise 'Invalid AppName'
+      end
+      app_path
     end
 
     def time_limit
@@ -159,10 +179,6 @@ module UIAutoMonkey
 
     def crash_report_dir
       "#{ENV['HOME']}/Library/Logs/DiagnosticReports"
-    end
-
-    def find_apps(app)
-      `"ls" -dt #{ENV['HOME']}/Library/Developer/Xcode/DerivedData/*/Build/Products/*/#{app}`.strip.split(/\n/)
     end
 
     def crash_report_list
@@ -207,22 +223,6 @@ module UIAutoMonkey
         results << line unless status == 2
       end
       results.join('')
-    end
-
-
-    def find_app_path(opts)
-      app_path = nil
-      if opts[:app_path].include?('/')
-        app_path = opts[:app_path]
-      elsif opts[:app_path] =~ /\.app$/
-        apps = find_apps(opts[:app_path])
-        app_path = apps[0]
-        log "#{apps.size} apps are found, USE NEWEST APP: #{app_path}" if apps.size > 1
-      end
-      unless app_path
-        raise 'Invalid AppName'
-      end
-      app_path
     end
 
     def parse_results
