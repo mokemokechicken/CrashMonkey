@@ -1,9 +1,27 @@
+# rcov generated
+coverage
+coverage.data
+
+# rdoc generated
+rdoc
+
+# yard generated
+doc
+.yardoc
+
+# bundler
+.bundle
+
+# jeweler generated
+pkg
+
+
+
 .DS_Store
 *.sublime-project
 *.sublime-workspace
 .idea/
 /instrumentscli*.trace/
 .ruby-version
-/.bundle/
 /vendor/
 /spike/
