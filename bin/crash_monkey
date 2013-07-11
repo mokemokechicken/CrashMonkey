@@ -11,7 +11,7 @@ opts = {}
 ARGV.options do |o|
   o.on('-a app_name', 'Target Application(Required)') {|b| opts[:app_path] = b}
   o.on('-n run_count', 'How many times monkeys run(default: 2)') {|b| opts[:run_count] = b.to_i}
-  o.on('-d result_dir', 'Where to output result(default: ./crash_monkey)') {|b| opts[:result_base_dir] = File.expand_path(b)}
+  o.on('-d result_dir', 'Where to output result(default: ./crash_monkey_result)') {|b| opts[:result_base_dir] = File.expand_path(b)}
   o.on('-t time_limit_sec', 'Time limit of running(default: 100 sec)') {|b| opts[:time_limit_sec] = b.to_i}
   o.on('-c config_path', 'Configuration JSON Path') {|b| opts[:config_path] = File.expand_path(b)}
   o.on('--show-config', 'Show Current Configuration JSON') {|_| opts[:show_config] = true}
