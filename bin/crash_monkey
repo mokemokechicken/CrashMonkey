@@ -15,10 +15,11 @@ ARGV.options do |o|
   o.on('-t time_limit_sec', 'Time limit of running(default: 100 sec)') {|b| opts[:time_limit_sec] = b.to_i}
   o.on('-c config_path', 'Configuration JSON Path') {|b| opts[:config_path] = File.expand_path(b)}
   o.on('--show-config', 'Show Current Configuration JSON') {|_| opts[:show_config] = true}
+  o.on('--list-app', 'Show List of Installed Apps in iOS Simulator') {|_| opts[:list_app] = true}
   o.parse!
 end
 
-unless opts[:app_path] || opts[:show_config]
+unless opts[:app_path] || opts[:show_config] || opts[:list_app]
   puts ARGV.options.help
   exit(1)
 end
@@ -28,6 +29,6 @@ opts[:time_limit_sec] ||= 100
 
 result_ok = UIAutoMonkey::MonkeyRunner.new.run(opts)
 
-puts result_ok ? 'EXIT 0' : 'EXIT 1' unless opts[:show_config]
+puts result_ok ? 'EXIT 0' : 'EXIT 1' unless opts[:show_config] || opts[:list_app]
 
 exit(result_ok ? 0 : 1)

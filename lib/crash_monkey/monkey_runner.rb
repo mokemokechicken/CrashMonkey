@@ -20,7 +20,11 @@ module UIAutoMonkey
       if @options[:show_config]
         show_config
         return true
+      elsif @options[:list_app]
+        list_app
+        return true
       end
+      ###########
       log @options.inspect
       FileUtils.remove_dir(result_base_dir, true)
       FileUtils.makedirs(result_base_dir)
@@ -112,6 +116,10 @@ module UIAutoMonkey
 
     def show_config
       puts File.read(config_json_path)
+    end
+
+    def list_app
+      puts find_apps('*.app').map{|n| File.basename n}.uniq.sort.join("\n")
     end
 
     def log(msg)
