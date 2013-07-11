@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{crash_monkey}
-  s.version = "0.1.6"
+  s.version = "0.1.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ken Morishita"]
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.executables = ["crash_monkey"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
+    "README.md",
     "README.rdoc"
   ]
   s.files = [
@@ -24,6 +25,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
+    "README.md",
     "README.rdoc",
     "Rakefile",
     "VERSION",
@@ -50,7 +52,7 @@ Gem::Specification.new do |s|
     "lib/ui-auto-monkey/UIAutoMonkey.js",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/mokemokechicken/crash_monkey}
+  s.homepage = %q{https://github.com/mokemokechicken/CrashMonkey}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
