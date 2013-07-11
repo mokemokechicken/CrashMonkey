@@ -1,5 +1,5 @@
 {
-    "numberOfEvents": 1000,
+    "numberOfEvents": 100000,
     "delayBetweenEvents": 0.05,
     "result_detail_event_num": 20,
 
