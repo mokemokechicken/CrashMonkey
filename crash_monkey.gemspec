@@ -4,16 +4,16 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{CrashMonkey}
+  s.name = %q{crash_monkey}
   s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ken Morishita"]
-  s.date = %q{2013-07-10}
-  s.default_executable = %q{run_monkey}
+  s.date = %q{2013-07-11}
+  s.default_executable = %q{crash_monkey}
   s.description = %q{This is a Monkey Test Tool using UIAutomation.}
   s.email = %q{mokemokechicken@gmail.com}
-  s.executables = ["run_monkey"]
+  s.executables = ["crash_monkey"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -21,14 +21,14 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
-    "CrashMonkey.gemspec",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "bin/run_monkey",
+    "bin/crash_monkey",
+    "crash_monkey.gemspec",
     "lib/bootstrap/css/bootstrap-responsive.css",
     "lib/bootstrap/css/bootstrap-responsive.min.css",
     "lib/bootstrap/css/bootstrap.css",
@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
     "lib/ui-auto-monkey/UIAutoMonkey.js",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/mokemokechicken/CrashMonkey}
+  s.homepage = %q{http://github.com/mokemokechicken/crash_monkey}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}

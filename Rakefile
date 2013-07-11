@@ -14,8 +14,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = 'CrashMonkey'
-  gem.homepage = 'http://github.com/mokemokechicken/CrashMonkey'
+  gem.name = 'crash_monkey'
+  gem.homepage = 'http://github.com/mokemokechicken/crash_monkey'
   gem.license = 'MIT'
   gem.summary = 'Monkey Test For iOS Application'
   gem.description = 'This is a Monkey Test Tool using UIAutomation.'
