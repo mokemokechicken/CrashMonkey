@@ -1,6 +1,8 @@
 CrashMonkey
 ===========
 
+[English](README_en.md)
+
 概要
 ----
 
