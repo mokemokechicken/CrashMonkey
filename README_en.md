@@ -131,6 +131,33 @@ In this case, the test can not run if the password is not entered. The following
 Other conditions may be OK, but this is also work.
 
 
+Troubleshooting
+-------------------
+
+### CASE: xcode-select is not set.
+
+
+#### symptoms
+
+```
+% crash_monkey -a MyGoodApp.app
+.....
+Run: ["instruments", "-l", "100000", "-t", ........... ]
+xcode-select: Error: No Xcode folder is set. Run xcode-select -switch <xcode_folder_path> to set the path to the Xcode folder.
+.....
+```
+
+#### measures
+
+Please specify the install path of Xcode by **xcode-select**.
+
+ex）
+
+```
+sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+```
+
+
 
 Contributing to CrashMonkey
 ---------------------

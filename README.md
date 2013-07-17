@@ -133,6 +133,32 @@ ssh でログインしてこの状態になったときに、CUI上でユーザ�
 ここで正しく入力しても動かなかいことがありますので注意が必要です。
 
 
+トラブルシューティング
+-------------------
+
+### xcode-select が設定されていないケース
+
+
+#### 現象
+```
+% crash_monkey -a MyGoodApp.app
+.....
+Run: ["instruments", "-l", "100000", "-t", ........... ]
+xcode-select: Error: No Xcode folder is set. Run xcode-select -switch <xcode_folder_path> to set the path to the Xcode folder.
+.....
+```
+
+#### 対処
+
+xcode-select で XcodeのInstall Pathを指定して下さい。
+
+例）
+
+```
+sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+```
+
+
 Contributing to CrashMonkey
 ---------------------
  
