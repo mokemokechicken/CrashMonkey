@@ -16,6 +16,7 @@ ARGV.options do |o|
   o.on('-c config_path', 'Configuration JSON Path') {|b| opts[:config_path] = File.expand_path(b)}
   o.on('--show-config', 'Show Current Configuration JSON') {|_| opts[:show_config] = true}
   o.on('--list-app', 'Show List of Installed Apps in iOS Simulator') {|_| opts[:list_app] = true}
+  o.on('--reset-iPhone-Simulator', 'Reset iPhone Simulator')
   o.parse!
 end
 

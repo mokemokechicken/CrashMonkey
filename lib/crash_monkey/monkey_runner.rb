@@ -23,6 +23,8 @@ module UIAutoMonkey
       elsif @options[:list_app]
         list_app
         return true
+      elsif @options[:reset_iphone_simulator]
+        reset_iphone_simulator
       end
       ###########
       log @options.inspect
@@ -124,6 +126,10 @@ module UIAutoMonkey
 
     def log(msg)
       puts msg
+    end
+
+    def reset_iphone_simulator
+      `rm -rf ~/Library/Application\ Support/iPhone\ Simulator/`
     end
 
     def total_test_count
