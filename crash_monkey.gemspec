@@ -76,7 +76,11 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      if RUBY_VERSION =~ /^1\.9/ then
+        s.add_dependency(%q<simplecov>, [">= 0"])
+      else
+        s.add_dependency(%q<rcov>, [">= 0"])
+      end
     end
   else
     s.add_dependency(%q<erubis>, [">= 2.7.0"])
