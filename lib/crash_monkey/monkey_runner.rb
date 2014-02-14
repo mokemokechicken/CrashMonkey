@@ -120,6 +120,11 @@ module UIAutoMonkey
       puts File.read(config_json_path)
     end
 
+    def show_extend_javascript
+      filename = @options[:extend_javascript_path]
+      return File.exist?(filename), filename
+    end
+
     def list_app
       puts find_apps('*.app').map{|n| File.basename n}.uniq.sort.join("\n")
     end
@@ -212,10 +217,14 @@ module UIAutoMonkey
     end
 
     def generate_ui_auto_monkey
+      extend_javascript_flag, extend_javascript_path =  show_extend_javascript
       orig = File.read(ui_auto_monkey_original_path)
       config = JSON.parse(File.read(config_json_path))
       replace_str = "    config: #{JSON.pretty_generate(config, :indent => ' '*6)}, \n"
       js = replace_text(orig, replace_str, '__UIAutoMonkey Configuration Begin__', '__UIAutoMonkey Configuration End__')
+      if extend_javascript_flag
+        js = File.read(extend_javascript_path) + "\n" + js
+      end
       File.open(ui_auto_monkey_path, 'w') {|f| f.write(js)}
     end
 
