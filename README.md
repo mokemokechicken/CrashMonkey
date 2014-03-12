@@ -1,5 +1,6 @@
 CrashMonkey
 ===========
+[Japanese](README_jp.md)
 
 About
 ----
