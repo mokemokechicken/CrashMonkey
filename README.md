@@ -1,44 +1,42 @@
 CrashMonkey
 ===========
+[Japanese](README_jp.md)
 
-[English](README_en.md)
-
-概要
+About
 ----
 
-iOSのアプリケーションをモンキーテスト（ランダムな操作をひたすら行う）するためのツールです。
-動作イメージはこの[デモ動画](http://youtu.be/y5PZGVbLHtI)を御覧ください。
-iPhone Simulatorの操作にはUIAutomationを使っていて、ベースとして[ui-auto-monkey](https://github.com/jonathanpenn/ui-auto-monkey)を使わせて頂きました。
+This is a tool of monkey test(random operation test) for iOS applications.
+Please watch the [demo movie](http://youtu.be/y5PZGVbLHtI).
+CrashMonkey uses UIAutomation and modified [ui-auto-monkey](https://github.com/jonathanpenn/ui-auto-monkey) for iPhone Simulator manipulation.
 
 
-動作環境
+Environment
 -------
 
-以下の環境でのみ確認してあります。
+It is confirmed only in the following environment.
 
 * Max OS X 10.8.4
 * Xcode 4.6.3(Build version 4H1503)
 * Ruby 1.8.7-p371
 
-Rubyについては、1.9系, 2.0系でも動くと思います。
+Ruby versions may be OK 1.9.x and 2.0.x.
 
+Features
+---------
 
-CrashMonkeyの特徴
----------------
+### Good Points
 
-### 良い点
+* No need to modify the app's project.
+* It can specify the running period and times.
+* The results of Screenshots and Operations history can be shown as HTML.
+* the console log and crash report can be shown.
+* It is easy to be used from CI tools like Jenkins.
 
-* アプリのプロジェクト自体に変更を加えなくても実行することができます
-* 実行時間や実行回数を指定できます
-* 実行結果をScreenshotと操作履歴のHTMLとしてみることができます
-* 実行時のConsoleLogや、Crash時のCrashレポートもみることができます
-* JenkinsなどのCIツールとの連携も容易です
+### Restrictions
 
-### 制限
-
-* iPhone Simulator でしか実行できません
-* 別のアプリ(Safariなど）に遷移してしまうと、テストが継続できません（検知してその回を終了します）
-* 適切な文字入力(ID/PASS等)とか猿だとできないような難しい操作ができません
+* It can be run only in iPhone Simulator.
+* The test can not continue when another application(like Safari) is the most front. (detect and finish the test).
+* It can not input suitable characters like ID/Pass.
 
 
 Install
@@ -48,16 +46,19 @@ Install
 gem install crash_monkey --no-ri --no-rdoc
 ```
 
-使いかた
+How to use
 ------
+
+### Simple Usage
 
 ```
 crash_monkey -a <APP_NAME or APP_PATH>
 ```
 
-`-a`でアプリの名前かPATHを指定します。
+`-a` specify AppName or PATH.
 
-#### 例
+
+#### Example
 
 ```
 crash_monkey -a MyAwesomeApp.app                               # (1)
@@ -65,11 +66,10 @@ crash_monkey -a build/Debug-iphonesimulator/MyAwesomeApp.app   # (2)
 crash_monkey -a ~/Library/Developer/Xcode/DerivedData/MyAwesomeApp-ffumcy/Build/Products/Debug-iphonesimulator/MyAwesomeApp.app # (3)
 ```
 
-* (1) の指定方法では、iPhone Simulatorにインストールされているアプリで名前が一致するものを実行します。同名のものが複数ある場合は更新時刻が一番新しいものを使います
-* (2)(3) の指定方法では、PATHにあるアプリを実行します。ただし、iPhone Simulator用にビルドされたものじゃないと使えないので注意して下さい。
-	* Dir名に **iphonesimulator** と入っているものが大抵そうです
+* in (1) case, an application is executed which matches the app's name installed in iPhone Simulator. If there are same name apps, the app of latest updated time is used.
 
-
+* in (2)(3) cases, an app which in the PATH is excuted. It is required that the app is built for iPhone Simlator.
+ 
 
 
 ### Options
@@ -82,64 +82,73 @@ Usage: crash_monkey [options]
     -d result_dir                    Where to output result(default: ./crash_monkey_result)
     -t time_limit_sec                Time limit of running(default: 100 sec)
     -c config_path                   Configuration JSON Path
+    -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
         --show-config                Show Current Configuration JSON
         --list-app                   Show List of Installed Apps in iOS Simulator
+        --reset-iPhone-Simulator     Reset iPhone Simulator
 ```
 
 
 #### -n
-Monkey Testを実行する回数を指定します。
+The times for monkey test excution.
 
 #### -d
-結果を出力するDirを指定します。
+The directory for output results.
 
 #### -t
-1回のテストのTimeoutを秒で指定します。
+Timeout seconds for one monkey test.
 
 #### -c
-UIAutomationの実行時に使うJSON形式のConfigファイルを指定します。雛形については `--show-config`オプションで取得してください。
+Specify configuration file(JSON format) for UIAutomation library.
+The template is shown by `--show-config` option.
+
+#### -e
+Specify extend Javascript file for UIAutomation library.    
+It could be used for login.([example](https://gist.github.com/jollychang/8972186))
 
 #### --show-config
-UIAutomationの実行時に使うConfigファイルをJSON形式で出力します。変更したい場合は、一度ファイルに保存してから変更し、 `-c` で指定してください。
+Output configuration for UIAutomation library by JSON format.
 
 #### --list-app
+List apps for iPhone Simulator.
 
-iPhone Simulatorにインストールされているアプリの名前の一覧を表示します。
+#### --reset-iPhone-Simulator.
+Reset iPhone Simulator.
 
-Jenkinsとの連携
+
+For Jenkins
 --------------
 
-CrashMonkeyはコマンドラインから起動するので、JenkinsなどのCIツールと連携するのは難しくないですが、いくつか注意点を挙げておきます。
+CrashMonkey has CUI interface, so easy to use from Jenkins.
+There are a few notes.
 
-### UIAutomation の 確認ダイアログがでる
+### Confirmation dialog from UIAutomation is displayed and stop tests.
 
-そのMacで初めてCrashMonkeyを実行する場合、Instruments(UIAutomation)が確認ダイアログを表示してパスワードの入力が求められることがあります。
+The first time in the Mac CrashMonkey run, Instruments(UIAutomation) may display a confirmation dialog and require to input password.
 
-この場合パスワードを入力しないと実行できませんが、少なくとも以下の対処をしておけば良いです。
+In this case, the test can not run if the password is not entered. The following management may be valid.
 
-* Jenkins実行ユーザがAdmin権限を持っている
-* Jenkins Slaveを動かしている場合
+
+* The Jenkins running User has Administration privilege.
+* In case Jenkins is running as slave, launch with X like following.
 
 	```
 	javaws http://<SERVER>/computer/<NodeName>/slave-agent.jnlp
 	```
-  というようなXを使った起動方法にしておく
-* Jenkinsからの実行時に、一度ダイアログが出るので、正しいパスワードを入力する
+
+* The first time a Jenkins Job runs in the Mac, if the dialog is displyed then input correct password.
+
+Other conditions may be OK, but this is also work.
 
 
-違う条件でも動くかもしれませんが、上記のようにしておけばダイアログが出なくなります。
-
-ssh でログインしてこの状態になったときに、CUI上でユーザ名とパスワードを聞かれることがあります。
-ここで正しく入力しても動かなかいことがありますので注意が必要です。
-
-
-トラブルシューティング
+Troubleshooting
 -------------------
 
-### xcode-select が設定されていないケース
+### CASE: xcode-select is not set.
 
 
-#### 現象
+#### symptoms
+
 ```
 % crash_monkey -a MyGoodApp.app
 .....
@@ -148,15 +157,16 @@ xcode-select: Error: No Xcode folder is set. Run xcode-select -switch <xcode_fol
 .....
 ```
 
-#### 対処
+#### measures
 
-xcode-select で XcodeのInstall Pathを指定して下さい。
+Please specify the install path of Xcode by **xcode-select**.
 
-例）
+ex）
 
 ```
 sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 ```
+
 
 
 Contributing to CrashMonkey
