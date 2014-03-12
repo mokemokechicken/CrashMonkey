@@ -82,6 +82,7 @@ Usage: crash_monkey [options]
     -d result_dir                    Where to output result(default: ./crash_monkey_result)
     -t time_limit_sec                Time limit of running(default: 100 sec)
     -c config_path                   Configuration JSON Path
+    -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
         --show-config                Show Current Configuration JSON
         --list-app                   Show List of Installed Apps in iOS Simulator
 ```
@@ -98,6 +99,11 @@ Monkey Testを実行する回数を指定します。
 
 #### -c
 UIAutomationの実行時に使うJSON形式のConfigファイルを指定します。雛形については `--show-config`オプションで取得してください。
+
+#### -e
+UIAutomation用の拡張JavaScriptファイルを指定します。
+Loginなどに使うことができます。 ([example](https://gist.github.com/jollychang/8972186))
+
 
 #### --show-config
 UIAutomationの実行時に使うConfigファイルをJSON形式で出力します。変更したい場合は、一度ファイルに保存してから変更し、 `-c` で指定してください。
