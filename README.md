@@ -58,7 +58,7 @@ crash_monkey -a <APP_NAME or APP_PATH>
 `-a` specify AppName or PATH.
 
 
-#### 例
+#### Example
 
 ```
 crash_monkey -a MyAwesomeApp.app                               # (1)
