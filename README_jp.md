@@ -85,6 +85,7 @@ Usage: crash_monkey [options]
     -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
         --show-config                Show Current Configuration JSON
         --list-app                   Show List of Installed Apps in iOS Simulator
+        --reset-iPhone-Simulator     Reset iPhone Simulator
 ```
 
 
@@ -111,6 +112,10 @@ UIAutomationの実行時に使うConfigファイルをJSON形式で出力しま�
 #### --list-app
 
 iPhone Simulatorにインストールされているアプリの名前の一覧を表示します。
+
+#### --reset-iPhone-Simulator
+
+iPhone Simulatorをリセットします。
 
 Jenkinsとの連携
 --------------
