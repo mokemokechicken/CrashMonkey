@@ -121,8 +121,10 @@ module UIAutoMonkey
     end
 
     def show_extend_javascript
-      filename = @options[:extend_javascript_path]
-      return File.exist?(filename), filename
+      if @options[:extend_javascript_path]
+        filename = @options[:extend_javascript_path]
+        return File.exist?(filename), filename
+      end
     end
 
     def list_app
