@@ -13,7 +13,7 @@ group :development do
   gem 'rdoc', '~> 3.12'
   gem 'bundler', '> 1.0.0'
   gem 'jeweler', '~> 1.8.4'
-  if RUBY_VERSION =~ /^1\.9/ then
+  if RUBY_VERSION > '1.9' then
     gem 'simplecov', '>= 0.8.2'
   else
     gem 'rcov', '>= 0'
