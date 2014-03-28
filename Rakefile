@@ -31,7 +31,7 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-if RUBY_VERSION =~ /^1\.9/
+if RUBY_VERSION > '1.9'
   desc "Code coverage detail"
   task :simplecov do
     ENV['COVERAGE'] = "true"
