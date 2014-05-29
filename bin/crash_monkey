@@ -17,11 +17,19 @@ ARGV.options do |o|
   o.on('-e extend_javascript_path', 'Extend Uiautomation Javascript for such Login scripts') {|b| opts[:extend_javascript_path] = File.expand_path(b)}
   o.on('--show-config', 'Show Current Configuration JSON') {|_| opts[:show_config] = true}
   o.on('--list-app', 'Show List of Installed Apps in iOS Simulator') {|_| opts[:list_app] = true}
-  o.on('--reset-iPhone-Simulator', 'Reset iPhone Simulator')
+  o.on('--reset-iPhone-Simulator', 'Reset iPhone Simulator'){|_| opts[:reset_iphone_simulator] = true}
+  o.on('--version', 'print crash monkey version'){|_| opts[:version] = true}
   o.parse!
 end
 
-unless opts[:app_path] || opts[:show_config] || opts[:list_app]
+if opts[:version]
+  dirname = File.dirname(File.dirname(__FILE__))
+  filepath = File.join(dirname, "VERSION")
+  puts File.open(filepath, 'rb') { |file| file.read }
+  exit(1)
+end
+
+unless opts[:app_path] || opts[:show_config] || opts[:list_app] || opts[:reset_iphone_simulator]
   puts ARGV.options.help
   exit(1)
 end
