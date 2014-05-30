@@ -25,6 +25,7 @@ module UIAutoMonkey
         return true
       elsif @options[:reset_iphone_simulator]
         reset_iphone_simulator
+        return true
       end
       ###########
       log @options.inspect
@@ -137,6 +138,7 @@ module UIAutoMonkey
 
     def reset_iphone_simulator
       `rm -rf ~/Library/Application\ Support/iPhone\ Simulator/`
+      puts 'reset iPhone Simulator successful'
     end
 
     def total_test_count
