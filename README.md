@@ -83,9 +83,9 @@ Usage: crash_monkey [options]
     -t time_limit_sec                Time limit of running(default: 100 sec)
     -c config_path                   Configuration JSON Path
     -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
-        --show-config                Show Current Configuration JSON
-        --list-app                   Show List of Installed Apps in iOS Simulator
-        --reset-iPhone-Simulator     Reset iPhone Simulator
+    --show-config                Show Current Configuration JSON
+    --list-app                   Show List of Installed Apps in iOS Simulator
+    --reset-iPhone-Simulator     Reset iPhone Simulator
 ```
 
 
