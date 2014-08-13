@@ -5,7 +5,8 @@
 
 Gem::Specification.new do |s|
   s.name = %q{crash_monkey}
-  s.version = "0.2.1"
+  version_path = File.join(File.dirname(__FILE__), "VERSION")
+  s.version = File.read(version_path)
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ken Morishita"]
