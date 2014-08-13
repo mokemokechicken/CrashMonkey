@@ -137,7 +137,7 @@ module UIAutoMonkey
     end
 
     def reset_iphone_simulator
-      `rm -rf ~/Library/Application\ Support/iPhone\ Simulator/`
+      FileUtils.rm_rf("#{Dir.home}/Library/Application\ Support/iPhone\ Simulator/")
       puts 'reset iPhone Simulator successful'
     end
 
