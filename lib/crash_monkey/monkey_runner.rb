@@ -224,7 +224,7 @@ module UIAutoMonkey
       extend_javascript_flag, extend_javascript_path =  show_extend_javascript
       orig = File.read(ui_auto_monkey_original_path)
       config = JSON.parse(File.read(config_json_path))
-      replace_str = "    this.config = #{JSON.pretty_generate(config, :indent => ' '*6)}, \n"
+      replace_str = "    this.config = #{JSON.pretty_generate(config, :indent => ' '*6)}; \n"
       js = replace_text(orig, replace_str, '__UIAutoMonkey Configuration Begin__', '__UIAutoMonkey Configuration End__')
       if extend_javascript_flag
         js = File.read(extend_javascript_path) + "\n" + js

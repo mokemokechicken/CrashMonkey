@@ -100,14 +100,14 @@ Timeout seconds for one monkey test.
 
 #### -c
 Specify configuration file(JSON format) for UIAutomation library.
-The template is shown by `--show-config` option.
+The template is shown by `--show-config` option.([example](https://github.com/mokemokechicken/CrashMonkey/blob/master/example_config.js))
 
 #### -e
 Specify extend Javascript file for UIAutomation library.    
 It could be used for login.([example](https://gist.github.com/jollychang/8972186))
 
 #### --show-config
-Output configuration for UIAutomation library by JSON format.
+Output configuration for UIAutomation library by JSON format.([example](https://github.com/mokemokechicken/CrashMonkey/blob/master/example_config.js))
 
 #### --list-app
 List apps for iPhone Simulator.
