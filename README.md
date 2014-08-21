@@ -83,9 +83,9 @@ Usage: crash_monkey [options]
     -t time_limit_sec                Time limit of running(default: 100 sec)
     -c config_path                   Configuration JSON Path
     -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
-        --show-config                Show Current Configuration JSON
-        --list-app                   Show List of Installed Apps in iOS Simulator
-        --reset-iPhone-Simulator     Reset iPhone Simulator
+    --show-config                Show Current Configuration JSON
+    --list-app                   Show List of Installed Apps in iOS Simulator
+    --reset-iPhone-Simulator     Reset iPhone Simulator
 ```
 
 
@@ -100,14 +100,14 @@ Timeout seconds for one monkey test.
 
 #### -c
 Specify configuration file(JSON format) for UIAutomation library.
-The template is shown by `--show-config` option.
+The template is shown by `--show-config` option.([example](https://github.com/mokemokechicken/CrashMonkey/blob/master/example_config.js))
 
 #### -e
 Specify extend Javascript file for UIAutomation library.    
 It could be used for login.([example](https://gist.github.com/jollychang/8972186))
 
 #### --show-config
-Output configuration for UIAutomation library by JSON format.
+Output configuration for UIAutomation library by JSON format.([example](https://github.com/mokemokechicken/CrashMonkey/blob/master/example_config.js))
 
 #### --list-app
 List apps for iPhone Simulator.
