@@ -327,7 +327,7 @@ module UIAutoMonkey
         if log[LOG_TYPE] == 'Screenshot'
           if log[MESSAGE] =~ /^action/
             hash[:action_image] = log[MESSAGE]
-          elsif log[MESSAGE] =~ /^screen/
+          elsif log[MESSAGE] =~ /^monkey/
             hash[:screen_image] = log[MESSAGE]
             hash[:timestamp] = log[TIMESTAMP]
             # emit and init
