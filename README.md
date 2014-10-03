@@ -52,10 +52,11 @@ How to use
 ### Simple Usage
 
 ```
-crash_monkey -a <APP_NAME or APP_PATH>
+crash_monkey -a <APP_NAME or APP_PATH> -w <DEVICE>
 ```
 
 `-a` specify AppName or PATH.
+`-w` specify the device on which to run. A list of available devices can be obtained with `crash_monkey --list-devices`. In case no device is specified, it will take the first from the list.
 
 
 #### Example
@@ -78,6 +79,7 @@ crash_monkey -a ~/Library/Developer/Xcode/DerivedData/MyAwesomeApp-ffumcy/Build/
 % crash_monkey
 Usage: crash_monkey [options]
     -a app_name                      Target Application(Required)
+    -w device                        Target Device(Required)
     -n run_count                     How many times monkeys run(default: 2)
     -d result_dir                    Where to output result(default: ./crash_monkey_result)
     -t time_limit_sec                Time limit of running(default: 100 sec)
@@ -85,6 +87,7 @@ Usage: crash_monkey [options]
     -e extend_javascript_path        Extend Uiautomation Javascript for such Login scripts
     --show-config                Show Current Configuration JSON
     --list-app                   Show List of Installed Apps in iOS Simulator
+    --list-devices               Show List of Devices
     --reset-iPhone-Simulator     Reset iPhone Simulator
 ```
 
@@ -111,6 +114,9 @@ Output configuration for UIAutomation library by JSON format.([example](https://
 
 #### --list-app
 List apps for iPhone Simulator.
+
+#### --list-devices
+List devices (simulator and attached) on which the monkey can be run.
 
 #### --reset-iPhone-Simulator.
 Reset iPhone Simulator.
