@@ -8,7 +8,7 @@ module UIAutoMonkey
   require 'json'
 
   class MonkeyRunner
-    TRACE_TEMPLATE='/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate'
+    TRACE_TEMPLATE='/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.xrplugin/Contents/Resources/Automation.tracetemplate'
     RESULT_BASE_PATH = File.expand_path('crash_monkey_result')
     RESULT_DETAIL_EVENT_NUM = 20
     TIME_LIMIT_SEC = 100
@@ -22,6 +22,9 @@ module UIAutoMonkey
         return true
       elsif @options[:list_app]
         list_app
+        return true
+      elsif @options[:list_devices]
+        list_devices
         return true
       elsif @options[:reset_iphone_simulator]
         reset_iphone_simulator
@@ -65,7 +68,7 @@ module UIAutoMonkey
       watch_syslog do
         begin
           Timeout.timeout(time_limit_sec + 5) do
-            run_process(%W(instruments -l #{time_limit} -t #{TRACE_TEMPLATE} #{app_path} -e UIASCRIPT #{ui_auto_monkey_path} -e UIARESULTSPATH #{result_base_dir}))
+            run_process(%W(instruments -w #{device} -l #{time_limit} -t #{TRACE_TEMPLATE} #{app_path} -e UIASCRIPT #{ui_auto_monkey_path} -e UIARESULTSPATH #{result_base_dir}))
           end
         rescue Timeout::Error
           log 'killall -9 instruments'
@@ -132,6 +135,10 @@ module UIAutoMonkey
       puts find_apps('*.app').map{|n| File.basename n}.uniq.sort.join("\n")
     end
 
+    def list_devices
+      puts devices.join("\n")
+    end
+
     def log(msg)
       puts msg
     end
@@ -145,6 +152,10 @@ module UIAutoMonkey
       (@options[:run_count] || 2)
     end
 
+    def device
+      @options[:device] || devices[0]
+    end
+
     def app_path
       @app_path ||= find_app_path(@options)
     end
@@ -155,6 +166,10 @@ module UIAutoMonkey
 
     def find_apps(app)
       `"ls" -dt #{ENV['HOME']}/Library/Developer/Xcode/DerivedData/*/Build/Products/*/#{app}`.strip.split(/\n/)
+    end
+
+    def devices
+      `"instruments" -s devices`.strip.split(/\n/).drop(2)
     end
 
     def find_app_path(opts)
