@@ -220,7 +220,7 @@ module UIAutoMonkey
     end
 
     def crash_report_list
-      `ls -t '#{crash_report_dir}/#{app_name}_*.crash'`.strip.split(/\n/)
+      `ls -t #{crash_report_dir}/'#{app_name}'_*.crash`.strip.split(/\n/)
     end
 
     def grep_syslog
