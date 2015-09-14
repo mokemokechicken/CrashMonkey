@@ -165,7 +165,7 @@ module UIAutoMonkey
     end
 
     def find_apps(app)
-      `find #{ENV['HOME']}/Library/Developer/Xcode/DerivedData -name '#{app}'`.strip.split(/\n/)
+      `"ls" -dt #{ENV['HOME']}/Library/Developer/Xcode/DerivedData/*/Build/Products/*/'#{app}'`.strip.split(/\n/)
     end
 
     def devices
