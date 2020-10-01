@@ -4,7 +4,7 @@ CrashMonkey
 
 About
 ----
-
+Great App
 This is a tool of monkey test(random operation test) for iOS applications.
 Please watch the [demo movie](http://youtu.be/y5PZGVbLHtI).
 CrashMonkey uses UIAutomation and modified [ui-auto-monkey](https://github.com/jonathanpenn/ui-auto-monkey) for iPhone Simulator manipulation.
